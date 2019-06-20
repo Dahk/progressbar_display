@@ -37,7 +37,7 @@ def worker(args):
     channel.publish(exchange='', routing_key=args['qid'], body='{:02}:{}'.format(args['worker_id'], -1))
 
 if __name__ == '__main__':
-    with open(os.path.join(os.path.expanduser('~'), '.pywren_config'), 'r') as f:
+    with open(os.path.expanduser('~/.pywren_config'), 'r') as f:
         secret = yaml.safe_load(f)
     pika_params = pika.URLParameters(secret['rabbitmq']['amqp_url'])
     connection = pika.BlockingConnection(pika_params)
